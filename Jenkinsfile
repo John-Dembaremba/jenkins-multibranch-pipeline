@@ -5,6 +5,10 @@ pipeline {
         stage('Build') {
             steps{
                 echo 'building the appplication.....'
+                script {
+                    def test = 2+2>3 ? 'cool': 'not cool'
+                    test
+                }
             }
 
         }
