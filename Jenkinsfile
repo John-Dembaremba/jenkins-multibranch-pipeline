@@ -27,9 +27,7 @@ pipeline {
     }
     post{
         always{
-            step{
-                echo 'Always defines all outcome whether success, failure etc.'
-            }
+            echo 'Always defines all outcome whether success, failure etc.'
         }
     }
 }
