@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        NEW_VERSION = '1.1.0'
+    }
 
     stages{
         stage('Build') {
@@ -30,6 +33,7 @@ pipeline {
             }
             steps{
                 echo 'deploying to staging the appplication.....'
+                
             }
 
         }
@@ -45,6 +49,7 @@ pipeline {
     post{
         always{
             echo 'Always defines all outcome whether success, failure etc.'
+            echo "the build [version]: ${NEW_VERSION} | [jobID]: ${BUILD_ID} | [url]: ${BUILD_URL}"
         }
     }
 }
