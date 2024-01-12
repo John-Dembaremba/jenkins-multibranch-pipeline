@@ -17,7 +17,7 @@ pipeline {
                 }
 
                 echo "cloning project with credintials..."
-                withCredentials([usernameColonPassword(credentialsId: 'global', Username: 'USERNAME', Password: 'USERPASS')]) {
+                withCredentials([usernameColonPassword(credentialsId: 'global', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
                             sh 'echo "username: $USERNAME password: $USERPASS"'
                 }
             }
