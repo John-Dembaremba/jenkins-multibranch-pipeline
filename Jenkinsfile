@@ -15,6 +15,11 @@ pipeline {
                     def test = 2+2>3 ? 'cool': 'not cool'
                     echo test
                 }
+
+                echo "cloning project with credintials..."
+                withCredentials([usernameColonPassword(credentialsId: 'global', Username: 'USERNAME', Password: 'USERPASS')]) {
+                            sh 'echo "username: $USERNAME password: $USERPASS"'
+                }
             }
 
         }
