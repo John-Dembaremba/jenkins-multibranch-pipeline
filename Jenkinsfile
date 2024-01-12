@@ -3,6 +3,9 @@ pipeline {
 
     stages{
         stage('Build') {
+            when {
+                branch 'main'
+            }
             steps{
                 echo 'building the appplication.....'
                 script {
@@ -13,16 +16,30 @@ pipeline {
 
         }
         stage('Test') {
+            when {
+                branch 'main'
+            }
             steps{
                 echo 'testing the appplication.....'
             }
 
         }
-        stage('Deploy') {
+        stage('Staging') {
+            when {
+                branch 'staging'
+            }
             steps{
-                echo 'depploying the appplication.....'
+                echo 'deploying to staging the appplication.....'
             }
 
+        }
+        stage('Deploy') {
+            when {
+                branch 'production'
+            }
+            steps{
+                echo 'deploying to production the appplication.....'
+            }
         }
     }
     post{
