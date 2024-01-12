@@ -15,7 +15,6 @@ pipeline {
         stage('Test') {
             steps{
                 echo 'testing the appplication.....'
-                sh 'l'
             }
 
         }
@@ -24,6 +23,13 @@ pipeline {
                 echo 'depploying the appplication.....'
             }
 
+        }
+    }
+    post{
+        always{
+            step{
+                echo 'Always defines all outcome whether success, failure etc.'
+            }
         }
     }
 }
