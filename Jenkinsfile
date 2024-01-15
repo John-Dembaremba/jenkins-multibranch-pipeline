@@ -1,3 +1,5 @@
+def gv
+
 pipeline {
     agent any
     environment {
@@ -9,18 +11,10 @@ pipeline {
             when {
                 branch 'main'
             }
-            steps{
-                echo 'building the appplication.....'
+            steps{              
                 script {
-                    def test = 2+2>3 ? 'cool': 'not cool'
-                    echo test
+                    gv.buildApp()
                 }
-
-                echo "cloning project with credintials..."
-                withCredentials([usernamePassword(credentialsId: 'global', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
-                    sh 'echo "username: $USERNAME password: $USERPASS"'
-                }
-
             }
 
         }
@@ -29,7 +23,9 @@ pipeline {
                 branch 'main'
             }
             steps{
-                echo 'testing the appplication.....'
+                script {
+                    gv.testApp()
+                }
             }
 
         }
@@ -38,8 +34,9 @@ pipeline {
                 branch 'staging'
             }
             steps{
-                echo 'deploying to staging the appplication.....'
-                
+                script {
+                    gv.stageApp()
+                }                
             }
 
         }
@@ -48,7 +45,9 @@ pipeline {
                 branch 'production'
             }
             steps{
-                echo 'deploying to production the appplication.....'
+                script {
+                    gv.deployApp()
+                }
             }
         }
     }
