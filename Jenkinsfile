@@ -7,6 +7,12 @@ pipeline {
     }
 
     stages{
+        stage('Init') {
+            steps {
+                gv = load 'script.groovy'
+            }
+        }
+
         stage('Build') {
             when {
                 branch 'main'
